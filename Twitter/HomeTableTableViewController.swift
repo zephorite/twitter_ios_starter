@@ -24,8 +24,9 @@ class HomeTableTableViewController: UITableViewController {
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         let myParams = ["count": 10]
         TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParams, success: {(tweets :[NSDictionary]) in
+            self.tweetArray.removeAll()
             for tweet in tweets{
-                self.tweetArray.removeAll()
+                
                 self.tweetArray.append(tweet)
             }
             self.tableView.reloadData()
@@ -62,6 +63,7 @@ class HomeTableTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print(tweetArray.count)
         return tweetArray.count
     }
 
